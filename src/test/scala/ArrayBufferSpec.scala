@@ -5,7 +5,7 @@ import org.scalatest.Matchers
 class ArrayBufferSpec extends FlatSpec with Matchers {
 
   behavior of "ArrayBuffer"
-  it should "work throw IndexOutOfBoundsException as appropriate" in {
+  it should "throw IndexOutOfBoundsException as appropriate" in {
     val ab = new ArrayBuffer[Int]
     intercept[IndexOutOfBoundsException] {
       ab(-1)

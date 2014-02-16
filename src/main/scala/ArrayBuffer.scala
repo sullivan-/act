@@ -1,8 +1,10 @@
-/** A mutable sequence-like thing that mimics scala.collection.mutable.ArrayBuffer.
-  * Only has append and index operations.
+/** A mutable sequence that mimics scala.collection.mutable.ArrayBuffer.
+  *
+  * Only has append, update and apply operations.
+  *
   * Built to demonstrate amortized constant time append operation.
   */
-class ArrayBuffer[A] {
+class ArrayBuffer[A] extends Buffer[A] {
 
   private val StartSize = 16
 

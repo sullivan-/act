@@ -43,4 +43,12 @@ class TrieSeqSpec extends FlatSpec with Matchers {
     ts(2) should equal { 4 }
   }
 
+  behavior of "TrieSeq"
+  it should "work as advertised for long sequences" in {
+    var ts = TrieSeq[Int]()
+    val range = (0 to 10000)
+    range.foreach { i => ts = ts.append(i + 3) }
+    range.foreach { i => ts(i) should equal { i + 3 } }
+  }
+
 }

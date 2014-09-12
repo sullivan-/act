@@ -1,30 +1,29 @@
 
-    class NaiveArrayBuffer[A] {
+class NaiveArrayBuffer[E] extends Buffer[E] {
 
-      private val StartSize = 16
+  private val StartSize = 16
 
-      private var size = 0
-      private var buff = new Array[Any](StartSize)
+  private var size = 0
+  private var buff = new Array[Any](StartSize)
 
-      def append(a: A): Unit = {
-        buff.update(size, a)
-        size += 1
-      }
+  def append(e: E): Unit = {
+    buff.update(size, e)
+    size += 1
+  }
 
-      def update(i: Int, a: A): Unit = {
-        checkBounds(i)
-        buff(i) = a
-      }
+  def unappend(): E = {
+    size = size - 1
+    val e = buff(size).asInstanceOf[E]
+    buff(size) = null
+    e
+  }
 
-      def apply(i: Int): A = {
-        checkBounds(i)
-        buff(i).asInstanceOf[A]
-      }
+  def update(i: Int, e: E): Unit = {
+    buff(i) = e
+  }
 
-      private def checkBounds(i: Int): Unit = {
-        if (i < 0 || i >= size) {
-          throw new IndexOutOfBoundsException(i.toString)
-        }
-      }
+  def apply(i: Int): E = {
+    buff(i).asInstanceOf[E]
+  }
 
-    }
+}

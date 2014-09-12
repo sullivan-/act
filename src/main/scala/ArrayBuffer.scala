@@ -40,7 +40,7 @@ class ArrayBuffer[E] extends Buffer[E] {
       throw new IndexOutOfBoundsException(i.toString)
     }
   }
- 
+
   def unappend(): E = {
     checkBounds(size - 1)
     size = size - 1

@@ -8,9 +8,9 @@ trait Buffer[E] {
   /** removes an element from the end */
   def unappend(): E
 
-  /** retrieves the element stored at the given index */
-  def apply(i: Int): E
-
   /** replaces the element stored at the index with a new element */
   def update(i: Int, e: E): Unit
+
+  /** retrieves the element stored at the given index */
+  def apply(i: Int): E
 }

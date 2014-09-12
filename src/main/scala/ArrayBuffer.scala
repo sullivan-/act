@@ -4,16 +4,16 @@
   *
   * Built to demonstrate amortized constant time append operation.
   */
-class ArrayBuffer[A] extends Buffer[A] {
+class ArrayBuffer[E] extends Buffer[E] {
 
   private val StartSize = 16
 
   private var size = 0
   private var buff = new Array[Any](StartSize)
 
-  def append(a: A): Unit = {
+  def append(e: E): Unit = {
     expandBufferIfFull()
-    buff.update(size, a)
+    buff.update(size, e)
     size += 1
   }
   
@@ -25,14 +25,14 @@ class ArrayBuffer[A] extends Buffer[A] {
     }
   } 
 
-  def apply(i: Int): A = {
+  def apply(i: Int): E = {
     checkBounds(i)
-    buff(i).asInstanceOf[A]
+    buff(i).asInstanceOf[E]
   }
 
-  def update(i: Int, a: A): Unit = {
+  def update(i: Int, e: E): Unit = {
     checkBounds(i)
-    buff(i) = a
+    buff(i) = e
   }
 
   private def checkBounds(i: Int): Unit = {
@@ -41,13 +41,13 @@ class ArrayBuffer[A] extends Buffer[A] {
     }
   }
  
-  def unappend(): A = {
+  def unappend(): E = {
     checkBounds(size - 1)
     size = size - 1
-    val a = buff(size).asInstanceOf[A]
+    val e = buff(size).asInstanceOf[E]
     buff(size) = null
     contractBufferIfWastedSpace()
-    a
+    e
   }
 
   private def contractBufferIfWastedSpace(): Unit = {

@@ -1,16 +1,16 @@
 /** an efficient mutable sequence. all operations are constant time or
   * amortized constant time */
-trait Buffer[A] {
+trait Buffer[E] {
 
   /** adds a new element to the end */
-  def append(a: A): Unit
+  def append(e: E): Unit
 
   /** removes an element from the end */
-  def unappend(): A
+  def unappend(): E
 
   /** retrieves the element stored at the given index */
-  def apply(i: Int): A
+  def apply(i: Int): E
 
   /** replaces the element stored at the index with a new element */
-  def update(i: Int, a: A): Unit
+  def update(i: Int, e: E): Unit
 }

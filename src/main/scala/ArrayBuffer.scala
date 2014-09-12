@@ -41,7 +41,7 @@ class ArrayBuffer[A] extends Buffer[A] {
     }
   }
  
-  def removeFromEnd(): A = {
+  def unappend(): A = {
     checkBounds(size - 1)
     size = size - 1
     val a = buff(size).asInstanceOf[A]

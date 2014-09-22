@@ -1,12 +1,9 @@
-/** A mutable sequence that mimics scala.collection.mutable.ArrayBuffer.
-  *
-  * Only has append, update and apply operations.
-  *
-  * Built to demonstrate amortized constant time append operation.
-  */
 class ArrayBuffer[E] extends Buffer[E] {
 
   private val StartSize = 16
+  private val ExpansionRatio = 2
+  private val RetractionTriggerRatio = 2
+  private val RetractionRatio = 1
 
   private var size = 0
   private var buff = new Array[Any](StartSize)
@@ -16,18 +13,13 @@ class ArrayBuffer[E] extends Buffer[E] {
     buff.update(size, e)
     size += 1
   }
-  
-  private def expandBufferIfFull(): Unit = {
-    if (buff.length == size) {
-      val newbuff = new Array[Any](size * 2)
-      Array.copy(buff, 0, newbuff, 0, size)
-      buff = newbuff
-    }
-  } 
 
-  def apply(i: Int): E = {
-    checkBounds(i)
-    buff(i).asInstanceOf[E]
+  def unappend(): E = {
+    checkNonEmpty()
+    size = size - 1
+    val e = buff(size).asInstanceOf[E]
+    buff(size) = null
+    e
   }
 
   def update(i: Int, e: E): Unit = {
@@ -35,26 +27,36 @@ class ArrayBuffer[E] extends Buffer[E] {
     buff(i) = e
   }
 
-  private def checkBounds(i: Int): Unit = {
-    if (i < 0 || i >= size) {
-      throw new IndexOutOfBoundsException(i.toString)
+  def apply(i: Int): E = {
+    checkBounds(i)
+    buff(i).asInstanceOf[E]
+  }
+  
+  private def expandBufferIfFull(): Unit = {
+    if (buff.length == size) {
+      val newbuff = new Array[Any](size * ExpansionRatio)
+      Array.copy(buff, 0, newbuff, 0, size)
+      buff = newbuff
+    }
+  } 
+
+  private def checkNonEmpty(): Unit = {
+    if (size == 0) {
+      throw new NoSuchElementException()
     }
   }
 
-  def unappend(): E = {
-    checkBounds(size - 1)
-    size = size - 1
-    val e = buff(size).asInstanceOf[E]
-    buff(size) = null
-    contractBufferIfWastedSpace()
-    e
+  private def contractBufferIfWastedSpace(): Unit = {
+    if (buff.length >= size * RetractionTriggerRatio) {
+      val newbuff = new Array[Any](size * RetractionRatio)
+      Array.copy(buff, 0, newbuff, 0, size)
+      buff = newbuff
+    }
   }
 
-  private def contractBufferIfWastedSpace(): Unit = {
-    if (buff.length >= size * 2) {
-      val newbuff = new Array[Any](size)
-      Array.copy(buff, 0, newbuff, 0, size)
-      buff = newbuff          
+  private def checkBounds(i: Int): Unit = {
+    if (i < 0 || i >= size) {
+      throw new IndexOutOfBoundsException(i.toString)
     }
   }
 

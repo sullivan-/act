@@ -1,0 +1,123 @@
+
+instructions for generating the equation images:
+- go to http://www.sciweavers.org/free-online-latex-equation-editor
+- paste in the LaTeX
+- choose black/transparent/arev/24/png
+- click generate
+- right-click and save the PNG
+
+--- equation01
+
+\begin{minipage}[t]{16cm}
+t(n) \leq c
+\hfill
+(equation\,1)
+\end{minipage}
+
+--- equation02
+
+\begin{minipage}[t]{16cm}
+t(n) \leq b n + c
+\hfill
+(equation\,2)
+\end{minipage}
+
+--- equation03
+
+\begin{minipage}[t]{16cm}
+t_n(n) \leq b_n n + c_n
+\hfill
+(equation\,3) \\[3pt]
+t_c(n) \leq b_c n + c_c
+\end{minipage}
+
+--- equation04
+
+\begin{minipage}[t]{16cm}
+t_r(n) \leq c_r
+\hfill
+(equation\,4)
+\end{minipage}
+
+--- equation05
+
+\begin{minipage}[t]{16cm}
+\begin{tabbing}
+t_e(n)\, \= =    t_n(2n) + t_c(n) + t_r(n) \` (equation\,5) \\[3pt]
+         \> \leq 2(b_n \cdot n + c_n) + (b_c \cdot n + c_c) + c_r \\[3pt]
+         \> =    (2b_n + b_c) \cdot n + 2 c_n + c_c + c_r
+\end{tabbing}
+\end{minipage}
+
+--- equation06
+
+\begin{minipage}[t]{16cm}
+t_e(n) \leq b_e n + c_e
+\hfill
+(equation\,6)
+\end{minipage}
+
+--- equation07
+
+\begin{minipage}[t]{16cm}
+a(n) = \( \frac{1}{n + 1} \) \sum\limits_{i=0}^{n} t(i)  
+\hfill
+(equation\,7)
+\end{minipage}
+
+--- equation08
+
+\begin{minipage}[t]{16cm}
+let i = \begin{cases}log_2(n) & n\,is\,a\,power\,of\,2 \\undefined &
+elsewhere\end{cases}   
+\hfill
+(equation\,8)
+\end{minipage}
+
+--- equation09
+
+\begin{minipage}[t]{16cm}
+r(i) = \( \frac{2}{n} \) \sum\limits_{k=\frac{n}{2} + 1}^{n} t(k)  
+\hfill
+(equation\,9)
+\end{minipage}
+
+--- equation10
+
+\begin{minipage}[t]{16cm}
+t_n(n) \leq c_n
+\hfill
+(equation\,10) \\[3pt]
+t_e(n) \leq b_e n + c_e
+\end{minipage}
+
+--- equation11
+
+\begin{minipage}[t]{16cm}
+\begin{tabbing}
+r(i)\, \= = \(\frac{2}{n} \) ((\(\frac{n}{2} \) - 1)t_n(n) + t_e(n))
+\` (equation\,11) \\[3pt]
+        \> = \(\frac{2}{n} \) (\(\frac{n}{2} \)t_n(n) - t_n(n) +
+        t_e(n)) \\[3pt]
+        \> = t_n(n) - \(\frac{2}{n} \)t_n(n) + \(\frac{2}{n} \)t_e(n)
+        \\[3pt]
+        \> \leq t_n(n) + \(\frac{2}{n} \)t_e(n) \\[3pt]
+        \> \leq c_n + \(\frac{2}{n} \)(b_e n + c_e) \\[3pt]
+        \> = c_n + 2b_e + \frac{2c_e}{n} \\[3pt]
+        \> \leq c_n + 2b_e + 2c_e
+\end{tabbing}
+\end{minipage}
+
+--- equation12
+
+\begin{minipage}[t]{16cm}
+\( \frac{1}{10} \) \sum\limits_{i=1}^{10} f(i) < 4 \hfill (equation\,12) \\[3pt]
+\( \frac{1}{10} \) \sum\limits_{i=11}^{20} f(i) < 4 \\[3pt]
+\( \frac{1}{30} \) \sum\limits_{i=21}^{50} f(i) < 4 \\[3pt]
+\end{minipage}
+
+--- equation13
+
+\begin{minipage}[t]{16cm}
+\( \frac{1}{50} \) \sum\limits_{i=1}^{50} f(i) < 4 \hfill (equation\,13)
+\end{minipage}
